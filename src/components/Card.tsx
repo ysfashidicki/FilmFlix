@@ -16,7 +16,7 @@ export const Card: FC<MovieCardType> = (props) => {
           src={
             poster_path
               ? `https://image.tmdb.org/t/p/w500/${poster_path}`
-              : `/No-Image-Placeholder.svg.png`
+              : `/No-Image-Placeholder.png`
           }
           alt={title}
         />
