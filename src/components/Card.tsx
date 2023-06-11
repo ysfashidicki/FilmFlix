@@ -2,7 +2,6 @@ import { FC } from "react";
 import Button from "./Button";
 
 interface MovieCardType {
-  id: number;
   title: string;
   poster_path: string;
 }

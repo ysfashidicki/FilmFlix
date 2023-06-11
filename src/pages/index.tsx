@@ -1,4 +1,5 @@
 import { FC, useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
 
 import Layout from "../components/Layout";
@@ -107,12 +108,9 @@ const Homepage: FC<MovieType> = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4">
             {movies.map((movie) => {
               return (
-                <Card
-                  key={movie.id}
-                  id={movie.id}
-                  title={movie.title}
-                  poster_path={movie.poster_path}
-                />
+                <Link to={`/detail/${movie.id.toString()}`} key={movie.id}>
+                  <Card title={movie.title} poster_path={movie.poster_path} />
+                </Link>
               );
             })}
           </div>
