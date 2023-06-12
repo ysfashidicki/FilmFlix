@@ -1,12 +1,9 @@
 import { FC } from "react";
+
 import Button from "./Button";
+import { MovieTypeCard } from "../utils/types/movie";
 
-interface MovieCardType {
-  title: string;
-  poster_path: string;
-}
-
-export const Card: FC<MovieCardType> = (props) => {
+export const Card: FC<MovieTypeCard> = (props) => {
   const { title, poster_path } = props;
   return (
     <div className="card w-[450px] sm:w-[34rem] md:w-[26rem] lg:w-[20rem] xl:w-[19rem] bg-base-100 shadow-xl hover:scale-110 duration-300">

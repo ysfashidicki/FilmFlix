@@ -1,19 +1,18 @@
 import { FC, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { fetchMovies } from "../utils/api";
 
+import { fetchMovies } from "../utils/api";
+import { MovieTypeCard } from "../utils/types/movie";
 import Layout from "../components/Layout";
 import { Card } from "../components/Card";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
-interface MovieType {
+interface ListMoviesType extends MovieTypeCard {
   id: number;
-  title: string;
-  poster_path: string;
 }
 
 const Homepage: FC = () => {
-  const [movies, setMovies] = useState<MovieType[]>([]);
+  const [movies, setMovies] = useState<ListMoviesType[]>([]);
   const [currentPage, setCurrentPage] = useState<number>(1);
   const totalPages = 97;
   const maxVisiblePages = 5;

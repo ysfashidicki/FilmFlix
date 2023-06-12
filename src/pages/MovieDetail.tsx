@@ -4,13 +4,11 @@ import { useParams, Link } from "react-router-dom";
 import { Hero } from "../components/Hero";
 import { Card } from "../components/Card";
 import Layout from "../components/Layout";
-import { MovieType } from "../utils/types/movie";
+import { MovieType, MovieTypeCard } from "../utils/types/movie";
 import { fetchMovieDetail, fetchSimilarMovies } from "../utils/api";
 
-interface SimilarMovieType {
+interface SimilarMovieType extends MovieTypeCard {
   id: number;
-  title: string;
-  poster_path: string;
 }
 
 const MovieDetail: FC = () => {
