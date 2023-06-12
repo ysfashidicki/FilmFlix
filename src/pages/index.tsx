@@ -12,7 +12,7 @@ interface MovieType {
   poster_path: string;
 }
 
-const Homepage: FC<MovieType> = () => {
+const Homepage: FC = () => {
   const [movies, setMovies] = useState<MovieType[]>([]);
   const [currentPage, setCurrentPage] = useState<number>(1);
   const totalPages = 97;
