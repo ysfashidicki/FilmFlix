@@ -12,15 +12,10 @@ const MovieDetail: FC = () => {
   const { id } = param;
 
   useEffect(() => {
-    fetchData();
-  }, []);
-
-  function fetchData() {
     axios
-      .get(`https://api.themoviedb.org/3/movie/${id}`, {
+      .get(`${import.meta.env.VITE_BASE_URL}/${id}`, {
         headers: {
-          Authorization:
-            "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJiY2IxY2RlYjUyYmVlMmY2ZWU2MjgxOWZkZDc0ZWQwOSIsInN1YiI6IjY0N2ViYmMxOTM4MjhlMDEzMzc5MjUzYSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.Gv7Rsy-EmtqWUs_TS1uL9hQ_-TwLz3nIwwH1Sze4jXM",
+          Authorization: `Bearer ${import.meta.env.VITE_API_TOKEN}`,
         },
       })
       .then((res) => {
@@ -30,7 +25,7 @@ const MovieDetail: FC = () => {
       .catch((err) => {
         alert(err.toString());
       });
-  }
+  }, []);
 
   if (!movieData) {
     return <span className="loading loading-dots loading-lg"></span>;
