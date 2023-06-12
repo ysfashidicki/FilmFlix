@@ -1,6 +1,6 @@
 import { FC, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import axios from "axios";
+import { fetchMovies } from "../utils/api";
 
 import Layout from "../components/Layout";
 import { Card } from "../components/Card";
@@ -19,24 +19,9 @@ const Homepage: FC<MovieType> = () => {
   const maxVisiblePages = 5;
 
   useEffect(() => {
-    axios
-      .get(
-        `${
-          import.meta.env.VITE_BASE_URL
-        }/now_playing?language=en-US&page=${currentPage}`,
-        {
-          headers: {
-            Authorization: `Bearer ${import.meta.env.VITE_API_TOKEN}`,
-          },
-        }
-      )
-      .then((res) => {
-        const { results } = res.data;
-        setMovies(results);
-      })
-      .catch((err) => {
-        alert(err.toString());
-      });
+    fetchMovies(currentPage).then((results) => {
+      setMovies(results);
+    });
   }, [currentPage]);
 
   function goTopage(page: number) {
