@@ -33,3 +33,20 @@ export async function fetchMovieDetail(id: string) {
     return null;
   }
 }
+
+export async function fetchSimilarMovies(id: string) {
+  try {
+    const res = await axios.get(
+      `${import.meta.env.VITE_BASE_URL}/${id}/similar`,
+      {
+        headers: {
+          Authorization: `Bearer ${import.meta.env.VITE_API_TOKEN}`,
+        },
+      }
+    );
+    return res.data.results;
+  } catch (err: any) {
+    alert(err.toString());
+    return null;
+  }
+}
