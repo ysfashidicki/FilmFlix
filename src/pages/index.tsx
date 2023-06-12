@@ -19,17 +19,14 @@ const Homepage: FC<MovieType> = () => {
   const maxVisiblePages = 5;
 
   useEffect(() => {
-    fetchData();
-  }, [currentPage]);
-
-  function fetchData() {
     axios
       .get(
-        `https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=${currentPage}`,
+        `${
+          import.meta.env.VITE_BASE_URL
+        }/now_playing?language=en-US&page=${currentPage}`,
         {
           headers: {
-            Authorization:
-              "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJiY2IxY2RlYjUyYmVlMmY2ZWU2MjgxOWZkZDc0ZWQwOSIsInN1YiI6IjY0N2ViYmMxOTM4MjhlMDEzMzc5MjUzYSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.Gv7Rsy-EmtqWUs_TS1uL9hQ_-TwLz3nIwwH1Sze4jXM",
+            Authorization: `Bearer ${import.meta.env.VITE_API_TOKEN}`,
           },
         }
       )
@@ -40,7 +37,7 @@ const Homepage: FC<MovieType> = () => {
       .catch((err) => {
         alert(err.toString());
       });
-  }
+  }, [currentPage]);
 
   function goTopage(page: number) {
     setCurrentPage(page);

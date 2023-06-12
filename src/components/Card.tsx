@@ -14,7 +14,7 @@ export const Card: FC<MovieCardType> = (props) => {
         <img
           src={
             poster_path
-              ? `https://image.tmdb.org/t/p/w500/${poster_path}`
+              ? `${import.meta.env.VITE_BASE_POSTER_URL}/${poster_path}`
               : `/No-Image-Placeholder.png`
           }
           alt={title}

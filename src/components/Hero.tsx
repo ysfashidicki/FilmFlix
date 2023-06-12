@@ -18,7 +18,6 @@ export const Hero: FC<MovieType> = (props) => {
     release_date,
     production_countries,
     genres,
-    runtime,
     overview,
     production_companies,
     status,
@@ -34,7 +33,9 @@ export const Hero: FC<MovieType> = (props) => {
   return (
     <section
       style={{
-        backgroundImage: `url(https://image.tmdb.org/t/p/original${backdrop_path})`,
+        backgroundImage: `url(${
+          import.meta.env.VITE_BASE_BACKDROP_URL
+        }/${backdrop_path})`,
         backgroundSize: "1900px",
         backgroundRepeat: "no-repeat",
       }}
@@ -44,7 +45,7 @@ export const Hero: FC<MovieType> = (props) => {
           <div className="w-[300px] max-h-[450px]">
             <figure>
               <img
-                src={`https://image.tmdb.org/t/p/w500/${poster_path}`}
+                src={`${import.meta.env.VITE_BASE_POSTER_URL}/${poster_path}`}
                 alt={original_title}
               />
             </figure>
