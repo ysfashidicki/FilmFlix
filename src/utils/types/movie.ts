@@ -22,3 +22,8 @@ export interface MovieType {
   popularity: number;
   budget: number;
 }
+
+export interface MovieTypeCard {
+  title: string;
+  poster_path: string;
+}
