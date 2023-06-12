@@ -1,30 +1,21 @@
 import { FC, useEffect, useState } from "react";
 import { MovieType } from "../utils/types/movie";
+import { fetchMovieDetail } from "../utils/api";
 import { useParams } from "react-router-dom";
-import axios from "axios";
 
 import { Hero } from "../components/Hero";
 import Layout from "../components/Layout";
 
 const MovieDetail: FC = () => {
   const [movieData, setMovieData] = useState<MovieType | null>(null);
-  const param = useParams();
-  const { id } = param;
+  const { id } = useParams<{ id: string }>();
 
   useEffect(() => {
-    axios
-      .get(`${import.meta.env.VITE_BASE_URL}/${id}`, {
-        headers: {
-          Authorization: `Bearer ${import.meta.env.VITE_API_TOKEN}`,
-        },
-      })
-      .then((res) => {
-        const { data } = res;
+    if (id) {
+      fetchMovieDetail(id).then((data) => {
         setMovieData(data);
-      })
-      .catch((err) => {
-        alert(err.toString());
       });
+    }
   }, []);
 
   if (!movieData) {
