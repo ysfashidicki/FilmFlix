@@ -20,6 +20,7 @@ const Homepage: FC = () => {
 
   useEffect(() => {
     fetchMovies(currentPage).then((results) => {
+      console.log(results);
       setMovies(results);
     });
   }, [currentPage]);
