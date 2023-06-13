@@ -14,13 +14,13 @@ interface ListMoviesType extends MovieTypeCard {
 const Homepage: FC = () => {
   const [movies, setMovies] = useState<ListMoviesType[]>([]);
   const [currentPage, setCurrentPage] = useState<number>(1);
-  const totalPages = 97;
-  const maxVisiblePages = 5;
+  const [totalPages, setTotalPages] = useState<number>(0);
+  const maxVisiblePages = 10;
 
   useEffect(() => {
-    fetchMovies(currentPage).then((results) => {
-      console.log(results);
-      setMovies(results);
+    fetchMovies(currentPage).then((data) => {
+      setMovies(data.results);
+      setTotalPages(data.total_pages);
     });
   }, [currentPage]);
 
@@ -59,7 +59,6 @@ const Homepage: FC = () => {
         </button>
       );
     }
-
     return pageButtons;
   }
 

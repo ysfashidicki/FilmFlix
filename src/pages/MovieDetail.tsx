@@ -20,18 +20,12 @@ const MovieDetail: FC = () => {
 
   useEffect(() => {
     if (id) {
-      fetchMovieDetail(id).then((data) => {
-        setMovieData(data);
-      });
-    }
-  }, [id]);
-
-  useEffect(() => {
-    if (id) {
-      fetchSimilarMovies(id).then((results) => {
-        console.log(similarmoviesData);
-        setSimilarMoviesData(results);
-      });
+      Promise.all([fetchMovieDetail(id), fetchSimilarMovies(id)]).then(
+        ([data, results]) => {
+          setMovieData(data);
+          setSimilarMoviesData(results);
+        }
+      );
     }
   }, [id]);
 
