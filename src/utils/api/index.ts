@@ -12,11 +12,11 @@ export async function fetchMovies(currentPage: number) {
         },
       }
     );
-    const { results } = res.data;
-    return results;
+    const { results, total_pages } = res.data;
+    return { results, total_pages };
   } catch (err: any) {
     alert(err.toString());
-    return [];
+    return { results: [], total_pages: 0 };
   }
 }
 
