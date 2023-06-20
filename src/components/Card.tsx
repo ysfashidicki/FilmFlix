@@ -13,7 +13,7 @@ export const Card: FC<CardProps> = (props) => {
   const { title, poster_path, buttonText, onButtonClick, id } = props;
 
   return (
-    <div className="card card-movie w-[450px] sm:w-[34rem] md:w-[26rem] lg:w-[20rem] xl:w-[19rem] bg-base-100 shadow-xl hover:scale-110 duration-300">
+    <div className="card card-movie w-[180px] sm:w-[15rem] md:w-[14rem] lg:w-[15rem] xl:w-[15rem] bg-base-100 shadow-xl hover:scale-110 duration-300">
       <figure>
         <Link to={`/detail/${id}`} key={id}>
           <img
