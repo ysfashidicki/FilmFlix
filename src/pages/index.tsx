@@ -1,11 +1,11 @@
 import { FC, useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 
 import { fetchMovies } from "../utils/api";
 import { MovieTypeCard } from "../utils/types/movie";
 import Layout from "../components/Layout";
 import { Card } from "../components/Card";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import { handleAddToFavorites } from "../utils/favoritesFilmUtils";
 
 interface ListMoviesType extends MovieTypeCard {
   id: number;
@@ -87,13 +87,18 @@ const Homepage: FC = () => {
       <div className="w-full h-auto py-4">
         <div className="flex items-center mx-auto justify-center">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4">
-            {movies.map((movie) => {
-              return (
-                <Link to={`/detail/${movie.id.toString()}`} key={movie.id}>
-                  <Card title={movie.title} poster_path={movie.poster_path} />
-                </Link>
-              );
-            })}
+            {movies.map((movie) => (
+              <Card
+                key={movie.id}
+                id={movie.id}
+                title={movie.title}
+                poster_path={movie.poster_path}
+                buttonText="Add to Favorites"
+                onButtonClick={() =>
+                  handleAddToFavorites(movie.id, movie.title, movie.poster_path)
+                }
+              />
+            ))}
           </div>
         </div>
       </div>

@@ -31,19 +31,7 @@ export const Navbar: FC = () => {
           }`}
         >
           <li className="md:ml-8 text-xl md:my-0 my-7 duration-500 cursor-pointer hover:scale-125 transition-all ease-in-out">
-            Home
-          </li>
-          <li className="md:ml-8 text-xl md:my-0 my-7 duration-500 cursor-pointer hover:scale-125 transition-all ease-in-out">
-            Service
-          </li>
-          <li className="md:ml-8 text-xl md:my-0 my-7 duration-500 cursor-pointer hover:scale-125 transition-all ease-in-out">
-            About Us
-          </li>
-          <li className="md:ml-8 text-xl md:my-0 my-7 duration-500 cursor-pointer hover:scale-125 transition-all ease-in-out">
-            Blog
-          </li>
-          <li className="md:ml-8 text-xl md:my-0 my-7 duration-500 cursor-pointer hover:scale-125 transition-all ease-in-out">
-            Contact
+            <Link to={"/favorites"}>Favorites Movie</Link>
           </li>
         </ul>
       </div>
