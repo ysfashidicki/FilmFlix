@@ -41,8 +41,8 @@ export const Hero: FC<MovieType> = (props) => {
       }}
     >
       <div className="flex h-full w-full flex-wrap items-center justify-center bg-gradient-to-t from-white pt-10 pb-28 dark:from-black">
-        <div className="grid grid-cols-4 gap-10 backdrop-blur-xl">
-          <div className="w-[300px] max-h-[450px]">
+        <div className="flex flex-col lg:flex lg:flex-row backdrop-blur-xl">
+          <div className="w-[300px] max-h-[450px] mx-auto lg:ms-10">
             <figure>
               <img
                 src={`${import.meta.env.VITE_BASE_POSTER_URL}/${poster_path}`}
@@ -50,13 +50,13 @@ export const Hero: FC<MovieType> = (props) => {
               />
             </figure>
           </div>
-          <div className="col-span-3 my-8">
-            <h2 className="text-4xl font-bold">
+          <div className="px-5 my-8">
+            <h2 className="text-xl sm:text-4xl font-bold">
               {" "}
               {original_title}{" "}
               <span className="font-medium">({releaseYear})</span>{" "}
             </h2>
-            <p className="text-gray-700 text-xl">
+            <p className="text-lg max-w-md sm:text-xl sm:max-w-xl">
               {release_date} (
               {production_countries
                 .map((country) => country.iso_3166_1)
@@ -67,14 +67,14 @@ export const Hero: FC<MovieType> = (props) => {
               {minutes > 0 && `${minutes}m`}
             </p>
             <div className="flex flex-col my-6">
-              <p className="text-2xl font-bold">Overview</p>
-              <p className="italic text-lg max-w-2xl">{overview}</p>
+              <p className="text-xl sm:text-2xl font-bold">Overview</p>
+              <p className="italic text-lg max-w-md sm:max-w-xl">{overview}</p>
             </div>
-            <div className="flex space-x-28 font-medium text-lg">
-              <div className="grid grid-rows-3 gap-8">
-                <div className="flex items-center justify-center space-x-2">
+            <div className="flex flex-col font-medium text-lg">
+              <div className="space-y-5 mb-5">
+                <div className="flex items-center space-x-2">
                   <BsFilm size={30} />
-                  <p className="max-w-xs truncate">
+                  <p className="max-w-sm sm:max-w-sm truncate">
                     {production_companies
                       .map((company) => company.name)
                       .join(", ")}
@@ -93,7 +93,7 @@ export const Hero: FC<MovieType> = (props) => {
                   </p>
                 </div>
               </div>
-              <div className="grid grid-rows-3 gap-8">
+              <div className="space-y-5">
                 <div className="flex items-center space-x-2">
                   <HiOutlineChatBubbleLeftEllipsis size={30} />
                   <p className="truncate max-w-xs">{tagline}</p>
