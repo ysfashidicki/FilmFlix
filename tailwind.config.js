@@ -2,7 +2,7 @@
 export default {
   darkMode: "class",
   daisyui: {
-    themes: ["acid", "coffee"],
+    themes: ["garden", "forest"],
   },
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {

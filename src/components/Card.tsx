@@ -11,9 +11,8 @@ interface CardProps extends MovieTypeCard {
 
 export const Card: FC<CardProps> = (props) => {
   const { title, poster_path, buttonText, onButtonClick, id } = props;
-
   return (
-    <div className="card card-movie w-[180px] sm:w-[15rem] md:w-[14rem] lg:w-[15rem] xl:w-[15rem] bg-base-100 shadow-xl hover:scale-110 duration-300">
+    <div className="card glass card-movie w-[180px] sm:w-[15rem] md:w-[14rem] lg:w-[15rem] xl:w-[15rem] bg-base-100 shadow-xl hover:scale-110 duration-300">
       <figure>
         <Link to={`/detail/${id}`} key={id}>
           <img
