@@ -51,7 +51,7 @@ export const Hero: FC<MovieType> = (props) => {
             </figure>
           </div>
           <div className="px-5 my-8">
-            <h2 className="text-xl sm:text-4xl font-bold">
+            <h2 className="text-xl sm:text-4xl font-bold max-w-lg">
               {" "}
               {original_title}{" "}
               <span className="font-medium">({releaseYear})</span>{" "}
@@ -74,7 +74,7 @@ export const Hero: FC<MovieType> = (props) => {
               <div className="space-y-5 mb-5">
                 <div className="flex items-center space-x-2">
                   <BsFilm size={30} />
-                  <p className="max-w-sm sm:max-w-sm truncate">
+                  <p className="max-w-sm sm:max-w-[15rem] truncate">
                     {production_companies
                       .map((company) => company.name)
                       .join(", ")}
@@ -96,7 +96,11 @@ export const Hero: FC<MovieType> = (props) => {
               <div className="space-y-5">
                 <div className="flex items-center space-x-2">
                   <HiOutlineChatBubbleLeftEllipsis size={30} />
-                  <p className="truncate max-w-xs">{tagline}</p>
+                  {tagline ? (
+                    <p className="truncate max-w-xs">{tagline}</p>
+                  ) : (
+                    <p>No tagline available</p>
+                  )}
                 </div>
                 <div className="flex items-center space-x-2">
                   <BsGraphUp size={30} />

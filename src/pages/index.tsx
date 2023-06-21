@@ -15,7 +15,7 @@ const Homepage: FC = () => {
   const [movies, setMovies] = useState<ListMoviesType[]>([]);
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [totalPages, setTotalPages] = useState<number>(0);
-  const maxVisiblePages = 10;
+  const maxVisiblePages = 7;
 
   useEffect(() => {
     fetchMovies(currentPage).then((data) => {
