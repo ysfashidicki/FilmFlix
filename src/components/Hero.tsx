@@ -74,7 +74,7 @@ export const Hero: FC<MovieType> = (props) => {
               <div className="space-y-5 mb-5">
                 <div className="flex items-center space-x-2">
                   <BsFilm size={30} />
-                  <p className="max-w-sm sm:max-w-[15rem] truncate">
+                  <p className="max-w-[6rem] sm:max-w-[15rem] truncate">
                     {production_companies
                       .map((company) => company.name)
                       .join(", ")}
