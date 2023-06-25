@@ -20,6 +20,26 @@ export async function fetchMovies(currentPage: number) {
   }
 }
 
+export async function fetchSearchMovies(query: string) {
+  try {
+    const encodedQuery = encodeURIComponent(query);
+    const res = await axios.get(
+      `https://api.themoviedb.org/3/search/movie?query=${encodedQuery}`,
+      {
+        headers: {
+          Authorization: `Bearer ${import.meta.env.VITE_API_TOKEN}`,
+        },
+      }
+    );
+
+    const { results, total_pages } = res.data;
+    return { results, total_pages };
+  } catch (err: any) {
+    alert(err.toString());
+    return { results: [], total_pages: 0 };
+  }
+}
+
 export async function fetchMovieDetail(id: string) {
   try {
     const res = await axios.get(`${import.meta.env.VITE_BASE_URL}/${id}`, {

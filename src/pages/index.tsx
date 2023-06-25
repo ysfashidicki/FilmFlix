@@ -1,10 +1,12 @@
 import { FC, useState, useEffect } from "react";
+import Swal from "sweetalert2";
 
-import { fetchMovies } from "../utils/api";
+import { fetchMovies, fetchSearchMovies } from "../utils/api";
 import { MovieTypeCard } from "../utils/types/movie";
 import Layout from "../components/Layout";
 import { Card } from "../components/Card";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import { GiMagnifyingGlass } from "react-icons/gi";
 import { handleAddToFavorites } from "../utils/favoritesFilmUtils";
 
 interface ListMoviesType extends MovieTypeCard {
@@ -13,9 +15,37 @@ interface ListMoviesType extends MovieTypeCard {
 
 const Homepage: FC = () => {
   const [movies, setMovies] = useState<ListMoviesType[]>([]);
+  const [searchQuery, setSearchQuery] = useState<string>("");
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [totalPages, setTotalPages] = useState<number>(0);
   const maxVisiblePages = 7;
+
+  const handleSearchInputChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    setSearchQuery(event.target.value);
+  };
+
+  const handleSearch = () => {
+    if (searchQuery.trim() === "") {
+      Swal.fire({
+        title: "Error",
+        text: "Please enter a movie title",
+        icon: "error",
+        showConfirmButton: false,
+        timer: 2000,
+      });
+      return;
+    }
+    fetchSearchMovies(searchQuery)
+      .then((res) => {
+        setMovies(res.results);
+        setTotalPages(res.total_pages);
+      })
+      .catch((err) => {
+        alert(err.toString());
+      });
+  };
 
   useEffect(() => {
     fetchMovies(currentPage).then((data) => {
@@ -85,6 +115,21 @@ const Homepage: FC = () => {
   return (
     <Layout>
       <div className="w-full h-auto py-4">
+        <div className="flex justify-center mx-auto my-6 space-x-5">
+          <input
+            type="text"
+            value={searchQuery}
+            onChange={handleSearchInputChange}
+            placeholder="Type to search movie"
+            className="input input-bordered input-accent input-lg w-full max-w-sm"
+          />
+          <button
+            className="btn btn-square btn-outline btn-accent btn-lg"
+            onClick={() => handleSearch()}
+          >
+            <GiMagnifyingGlass size={30} />
+          </button>
+        </div>
         <div className="flex items-center mx-auto justify-center">
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-10 sm:gap-4">
             {movies.map((movie) => (
